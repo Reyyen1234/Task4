@@ -18,7 +18,7 @@ public class UserRestController {
     IUserRepository repository;
 
     //SAVE
-    //http://localhost:8080/api/v1/post
+    //http://localhost:8080/api/v1/add
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<UserEntity> getPost(@RequestBody UserEntity userEntity){//karsi tarafta user entity gelecek
         repository.save(userEntity);
@@ -26,7 +26,7 @@ public class UserRestController {
     }
 
     //Update
-    //http://localhost:8080/api/v1/put
+    //http://localhost:8080/api/v1/update
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public ResponseEntity<Void> getPut(@RequestBody UserEntity userEntity){
         repository.save(userEntity);
@@ -43,7 +43,7 @@ public class UserRestController {
 
 
     //FIND
-    //http://localhost:8080/api/v1/get/4 //dort numarli bize getir
+    //http://localhost:8080/api/v1/find/{id} //dort numarli bize getir
     @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserEntity> getUser(@PathVariable(name="id") Long id){
         UserEntity userEntity=repository.findById(id).orElseThrow(()->new ResourceNotFoundException(id + "user id bulunmadi"));
